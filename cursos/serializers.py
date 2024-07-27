@@ -10,28 +10,28 @@ class AvaliacaoSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'email': {'write_only': True}
         }
-        fields = {
+        fields = (
             'id',
             'nome',
             'email',
             'curso',
             'avaliacao',
-            'comentario'
+            'comentario',
             'criacao',
             'atualizacao',
             'ativo'
-        }
+        )
 
 
 class CursoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Curso
-        fields = {
+        fields = (
             'id',
             'titulo',
             'url',
             'criacao',
             'atualizacao',
             'ativo'
-        }
+        )
