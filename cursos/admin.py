@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from .models import Curso, Avaliacao
+from .models import Avaliacao, Curso
+
 
 @admin.register(Curso)
 class CursoAdmin(admin.ModelAdmin):
@@ -9,4 +10,11 @@ class CursoAdmin(admin.ModelAdmin):
 
 @admin.register(Avaliacao)
 class AvaliacaoAdmin(admin.ModelAdmin):
-    list_display = ('curso', 'nome', 'email', 'criacao', 'atualizacao', 'ativo')
+    list_display = (
+        'curso',
+        'nome',
+        'email',
+        'criacao',
+        'atualizacao',
+        'ativo',
+    )

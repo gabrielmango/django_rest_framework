@@ -1,15 +1,12 @@
 from rest_framework import serializers
 
-from .models import Curso, Avaliacao
+from .models import Avaliacao, Curso
 
 
 class AvaliacaoSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Avaliacao
-        extra_kwargs = {
-            'email': {'write_only': True}
-        }
+        extra_kwargs = {'email': {'write_only': True}}
         fields = (
             'id',
             'nome',
@@ -19,19 +16,11 @@ class AvaliacaoSerializer(serializers.ModelSerializer):
             'comentario',
             'criacao',
             'atualizacao',
-            'ativo'
+            'ativo',
         )
 
 
 class CursoSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Curso
-        fields = (
-            'id',
-            'titulo',
-            'url',
-            'criacao',
-            'atualizacao',
-            'ativo'
-        )
+        fields = ('id', 'titulo', 'url', 'criacao', 'atualizacao', 'ativo')

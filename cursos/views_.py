@@ -1,13 +1,14 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
-from .models import Curso, Avaliacao
-from .serializers import CursoSerializer, AvaliacaoSerializer
+from .models import Avaliacao, Curso
+from .serializers import AvaliacaoSerializer, CursoSerializer
 
 
 class CursoAPIView(APIView):
     """API for Curso."""
+
     def get(self, request):
         cursos = Curso.objects.all()
         serializer = CursoSerializer(cursos, many=True)
@@ -22,11 +23,12 @@ class CursoAPIView(APIView):
 
 class AvaliacaoAPIView(APIView):
     """API for Avaliacao."""
+
     def get(self, request):
         avaliacoes = Avaliacao.objects.all()
         serializer = AvaliacaoSerializer(avaliacoes, many=True)
         return Response(serializer.data)
-    
+
     def post(self, request):
         serializer = AvaliacaoSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)

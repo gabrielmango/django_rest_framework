@@ -8,14 +8,21 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
             name='Curso',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                (
+                    'id',
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name='ID',
+                    ),
+                ),
                 ('criacao', models.DateField(auto_now_add=True)),
                 ('atualizacao', models.DateField(auto_now=True)),
                 ('ativo', models.BooleanField(default=True)),
@@ -30,15 +37,33 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Avaliacao',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                (
+                    'id',
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name='ID',
+                    ),
+                ),
                 ('criacao', models.DateField(auto_now_add=True)),
                 ('atualizacao', models.DateField(auto_now=True)),
                 ('ativo', models.BooleanField(default=True)),
                 ('nome', models.CharField(max_length=255)),
                 ('email', models.EmailField(max_length=254)),
                 ('comentario', models.TextField(blank=True, default='')),
-                ('avaliacao', models.DecimalField(decimal_places=1, max_digits=2)),
-                ('curso', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='avaliacoes', to='cursos.curso')),
+                (
+                    'avaliacao',
+                    models.DecimalField(decimal_places=1, max_digits=2),
+                ),
+                (
+                    'curso',
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name='avaliacoes',
+                        to='cursos.curso',
+                    ),
+                ),
             ],
             options={
                 'verbose_name': 'Avaliação',
