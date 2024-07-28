@@ -3,8 +3,11 @@ from rest_framework.decorators import action
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 
+from rest_framework import permissions
+
 from .models import Avaliacao, Curso
 from .serializers import AvaliacaoSerializer, CursoSerializer
+from .permissions import IsSuperUser
 
 """ Version 1 of API """
 
@@ -61,6 +64,10 @@ class AvaliacaoRetrieveUpdateDestroyAPIView(
 class CursoViewSet(viewsets.ModelViewSet):
     """View set for the Curso model."""
 
+    permission_classes = (
+        IsSuperUser,
+        permissions.DjangoModelPermissions, 
+    ) 
     queryset = Curso.objects.all()
     serializer_class = CursoSerializer
 
