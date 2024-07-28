@@ -1,10 +1,14 @@
 from django.urls import path
 from rest_framework.routers import SimpleRouter
 
-from .views import (AvaliacaoListCreateAPIView,
-                    AvaliacaoRetrieveUpdateDestroyAPIView, AvaliacaoViewSet,
-                    CursoListCreateAPIView, CursoRetrieveUpdateDestroyAPIView,
-                    CursoViewSet)
+from .views import (
+    AvaliacaoListCreateAPIView,
+    AvaliacaoRetrieveUpdateDestroyAPIView,
+    AvaliacaoViewSet,
+    CursoListCreateAPIView,
+    CursoRetrieveUpdateDestroyAPIView,
+    CursoViewSet,
+)
 
 router = SimpleRouter()
 
@@ -17,10 +21,7 @@ urlpatterns = [
         CursoRetrieveUpdateDestroyAPIView.as_view(),
         name='curso',
     ),
-    path(
-        'cursos/', 
-        CursoListCreateAPIView.as_view(), 
-        name='cursos'),
+    path('cursos/', CursoListCreateAPIView.as_view(), name='cursos'),
     path(
         'cursos/<int:curso_pk>/avaliacoes/',
         AvaliacaoListCreateAPIView.as_view(),
@@ -37,8 +38,6 @@ urlpatterns = [
         name='avaliacao',
     ),
     path(
-        'avaliacoes/', 
-        AvaliacaoListCreateAPIView.as_view(), 
-        name='avaliacoes'
+        'avaliacoes/', AvaliacaoListCreateAPIView.as_view(), name='avaliacoes'
     ),
 ]

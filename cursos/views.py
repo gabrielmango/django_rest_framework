@@ -1,13 +1,11 @@
-from rest_framework import generics, viewsets
+from rest_framework import generics, permissions, viewsets
 from rest_framework.decorators import action
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 
-from rest_framework import permissions
-
 from .models import Avaliacao, Curso
-from .serializers import AvaliacaoSerializer, CursoSerializer
 from .permissions import IsSuperUser
+from .serializers import AvaliacaoSerializer, CursoSerializer
 
 """ Version 1 of API """
 
@@ -66,8 +64,8 @@ class CursoViewSet(viewsets.ModelViewSet):
 
     permission_classes = (
         IsSuperUser,
-        permissions.DjangoModelPermissions, 
-    ) 
+        permissions.DjangoModelPermissions,
+    )
     queryset = Curso.objects.all()
     serializer_class = CursoSerializer
 
@@ -80,7 +78,7 @@ class CursoViewSet(viewsets.ModelViewSet):
         if page is not None:
             serialiazer = AvaliacaoSerializer(page, many=True)
             return self.get_paginated_response(serialiazer.data)
-        
+
         serialiazer = AvaliacaoSerializer(avaliacoes, many=True)
         return Response(serialiazer.data)
 
